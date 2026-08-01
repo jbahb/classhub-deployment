@@ -11,6 +11,15 @@ spring:
     password: ${DB_PASSWORD}
     driver-class-name: org.postgresql.Driver
 
+    hikari:
+      maximum-pool-size: 5
+      minimum-idle: 1
+      connection-timeout: 30000
+      validation-timeout: 5000
+      idle-timeout: 120000
+      max-lifetime: 300000
+      keepalive-time: 60000
+
   jpa:
     hibernate:
       ddl-auto: update
@@ -32,7 +41,6 @@ spring:
       mail:
         smtp:
           auth: true
-
           starttls:
             enable: true
 
@@ -50,7 +58,7 @@ eureka:
     fetch-registry: true
 
   instance:
-    prefer-ip-address: true
+    prefer-ip-address: false
     instance-id: ${spring.application.name}:${server.port}
 
 management:
